@@ -45,3 +45,14 @@ class Order:
             return "Order is empty!"
         order += (20 * "=") + "\n"
         return order
+
+    def __len__(self):
+        return len(self.order_elements)
+
+    def __eq__(self, other):
+        if not self.customer_first_name == other.customer_first_name and self.customer_last_name == other.customer_last_name:
+            return False
+        for order_element in self.order_elements:
+             if not order_element in other.order_elements:
+                 return False
+        return True

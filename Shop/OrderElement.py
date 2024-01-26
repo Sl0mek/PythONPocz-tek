@@ -16,3 +16,6 @@ class OrderElement:
     def __str__(self):
         return f"{self.product}, Quantity {self.quantity}"
 
+    def __eq__(self, other):
+        return self.product == other.product and self.quantity == other.quantity
+
