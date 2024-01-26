@@ -59,7 +59,8 @@ class Order:
         if pred:
             self._order_elements.sort(key=pred)
         else:
-            self._order_elements.sort(key=self._sort_price)
+            # self._order_elements.sort(key=self._sort_price)
+            self._order_elements.sort(key=lambda order_element: order_element.calculate_price())
 
     def __str__(self):
         order = (20 * "=") + "\n"
