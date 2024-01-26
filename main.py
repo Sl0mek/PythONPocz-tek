@@ -3,6 +3,35 @@ from Shop.Product import Product
 from Shop.OrderElement import OrderElement
 from Shop.DiscountPolicy import DiscountPolicy
 
+def joinArgs(*args):
+    tmp = ""
+    for arg in args:
+        tmp += str(arg) + "-"
+    return tmp
+
+def joinKwargs(**kwargs):
+    tmp = ""
+    for arg in kwargs:
+        tmp += str(arg) + "=" + str(kwargs[arg]) + ","
+    return tmp
+
+def unpackingExample():
+    list1 = [3, 4, 1]
+    list2 = [6, 8, 33]
+    combined_numbers = [*list1, *list2]
+    print(combined_numbers)
+
+    dict1 = {
+        "brand": "Ford",
+        "model": "Mustang",
+        "year": 1964
+    }
+    dict2 = {1: 'Geeks', 2: 'For', 3: 'Geeks'}
+
+    combined_dict = {**dict1, **dict2}
+    print(combined_dict)
+
+
 if __name__ == '__main__':
     order_elements = [OrderElement(product=Product(name="Procesor", category_name="Computer", unite_price=1000), quantity=1),
                       OrderElement(product=Product(name="Graphic card", category_name="Computer", unite_price=1200), quantity=1),
@@ -21,3 +50,8 @@ if __name__ == '__main__':
     print(order1 == order2)
     order2.add_new_order_element(name="Procesor", category_name="Computer", unite_price=1000, quantity=2)
     print(order2)
+
+    print(joinArgs(1, 2, 3, 4, 5))
+    print(joinKwargs(andrzej="słomka", jan="Kowalski"))
+
+    unpackingExample()
