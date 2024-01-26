@@ -6,5 +6,8 @@ class Product:
         self.unite_price = unite_price
 
     def print(self):
-        print(f"Name: {self.name}, Category: {self.category_name}, Price: {self.unite_price}")
+        print(f"Name: {self.name}, Category: {self.category_name}, Unit price: {self.unite_price}")
+
+    def __str__(self):
+        return f"Name: {self.name}, Category: {self.category_name}, Unit price: {self.unite_price}"
 
