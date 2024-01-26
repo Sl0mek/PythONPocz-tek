@@ -9,6 +9,7 @@ if __name__ == '__main__':
     order1.generate_order()
     order1.print()
     print(order1)
-    order2 = Order(customer_first_name="Jan", customer_last_name="Slomka", order_elements=order_elements)
-
+    order2 = Order(customer_first_name="Andrzej", customer_last_name="Slomka", order_elements=order_elements)
     print(order1 == order2)
+    order2.add_new_order_element(name="Procesor", category_name="Computer", unite_price=1000, quantity=2)
+    print(order2)
