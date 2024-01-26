@@ -19,3 +19,14 @@ class OrderElement:
     def __eq__(self, other):
         return self.product == other.product and self.quantity == other.quantity
 
+    def __lt__(self, other):
+        return self.calculate_price() < other.calculate_price()
+
+    def __le__(self, other):
+        return self.calculate_price() <= other.calculate_price()
+
+    def __gt__(self, other):
+        return self.calculate_price() > other.calculate_price()
+
+    def __ge__(self, other):
+        return self.calculate_price() >= other.calculate_price()

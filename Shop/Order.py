@@ -5,11 +5,12 @@ from Shop.OrderElement import OrderElement
 
 class Order:
 
-    MAX_ORDER_ELEMENTS  = 5
+    MAX_ORDER_ELEMENTS = 5
 
-    def __init__(self, customer_first_name, customer_last_name, order_elements=None):
+    def __init__(self, customer_first_name, customer_last_name, order_elements=None, discount_policy=None):
         self.customer_first_name = customer_first_name
         self.customer_last_name = customer_last_name
+        self._discount_policy = discount_policy
         if order_elements is None:
             self._order_elements = []
         else:
@@ -41,6 +42,8 @@ class Order:
         sum = 0
         for order_element in self._order_elements:
             sum += order_element.calculate_price()
+        if self._discount_policy:
+            sum = self._discount_policy(sum)
         return sum
 
     def add_new_order_element(self, name, category_name, unite_price, quantity):
@@ -48,6 +51,15 @@ class Order:
             self._order_elements.append(OrderElement(product=Product(name=name, category_name=category_name, unite_price=unite_price), quantity=quantity))
         else:
             print("To much elements in order")
+
+    def _sort_price(self, order_element):
+        return order_element.calculate_price()
+
+    def sort_elements(self, pred = None):
+        if pred:
+            self._order_elements.sort(key=pred)
+        else:
+            self._order_elements.sort(key=self._sort_price)
 
     def __str__(self):
         order = (20 * "=") + "\n"
