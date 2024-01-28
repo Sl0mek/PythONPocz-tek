@@ -1,6 +1,7 @@
 from Shop.Order import Order
 from Shop.DiscountPolicy import DiscountPolicy
 from Shop.DataGenerator import DataGenerator
+from Shop.ExpressOrder import ExpressOrder
 
 def joinArgs(*args):
     tmp = ""
@@ -44,6 +45,9 @@ if __name__ == '__main__':
     print(order1 == order2)
     order2.add_new_order_element(name="Procesor", category_name="Computer", unite_price=1000, quantity=2)
     print(order2)
+    express_order = ExpressOrder(customer_first_name="Andrzej", customer_last_name="Slomka", delivery_time="10.10.2024", order_elements=order_elements,
+                   discount_policy=DiscountPolicy.christmas_policy)
+    print(express_order)
 
     print(joinArgs(1, 2, 3, 4, 5))
     print(joinKwargs(andrzej="słomka", jan="Kowalski"))
