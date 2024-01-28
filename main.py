@@ -2,6 +2,9 @@ from Shop.Order import Order
 from Shop.DiscountPolicy import DiscountPolicy
 from Shop.DataGenerator import DataGenerator
 from Shop.ExpressOrder import ExpressOrder
+from Shop.PercentageDiscount import PercentageDiscount
+from Shop.AbsoluteDiscount import AbsoluteDiscount
+
 
 def joinArgs(*args):
     tmp = ""
@@ -9,11 +12,13 @@ def joinArgs(*args):
         tmp += str(arg) + "-"
     return tmp
 
+
 def joinKwargs(**kwargs):
     tmp = ""
     for arg in kwargs:
         tmp += str(arg) + "=" + str(kwargs[arg]) + ","
     return tmp
+
 
 def unpackingExample():
     list1 = [3, 4, 1]
@@ -34,7 +39,8 @@ def unpackingExample():
 
 if __name__ == '__main__':
     order_elements = DataGenerator.generate_base_order()
-    order1 = Order(customer_first_name="Andrzej", customer_last_name="Slomka", order_elements=order_elements, discount_policy=DiscountPolicy.christmas_policy)
+    order1 = Order(customer_first_name="Andrzej", customer_last_name="Slomka", order_elements=order_elements,
+                   discount_policy=DiscountPolicy())
     order1.print()
     order1.sort_elements()
     order1.print()
@@ -45,8 +51,13 @@ if __name__ == '__main__':
     print(order1 == order2)
     order2.add_new_order_element(name="Procesor", category_name="Computer", unite_price=1000, quantity=2)
     print(order2)
-    express_order = ExpressOrder(customer_first_name="Andrzej", customer_last_name="Slomka", delivery_time="10.10.2024", order_elements=order_elements,
-                   discount_policy=DiscountPolicy.christmas_policy)
+    express_order = ExpressOrder(customer_first_name="Andrzej", customer_last_name="Slomka", delivery_time="10.10.2024",
+                                 order_elements=order_elements,
+                                 discount_policy=PercentageDiscount(value=10))
+    print(express_order)
+    express_order = ExpressOrder(customer_first_name="Andrzej", customer_last_name="Slomka", delivery_time="10.10.2024",
+                                 order_elements=order_elements,
+                                 discount_policy=AbsoluteDiscount(value=3000))
     print(express_order)
 
     print(joinArgs(1, 2, 3, 4, 5))

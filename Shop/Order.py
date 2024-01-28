@@ -58,7 +58,7 @@ class Order:
         for order_element in self._order_elements:
             sum += order_element.calculate_price()
         if self._discount_policy:
-            sum = self._discount_policy(sum)
+            sum = self._discount_policy.apply_discount(sum)
         return sum
 
     def add_new_order_element(self, name, category_name, unite_price, quantity):
