@@ -5,11 +5,11 @@ from Shop.OrderElement import OrderElement
 
 class Order:
 
-    MAX_ORDER_ELEMENTS = 5
+    MAX_ORDER_ELEMENTS = 6
 
     def __init__(self, customer_first_name, customer_last_name, order_elements=None, discount_policy=None):
-        self.customer_first_name = customer_first_name
-        self.customer_last_name = customer_last_name
+        self._customer_first_name = customer_first_name
+        self._customer_last_name = customer_last_name
         self._discount_policy = discount_policy
         if order_elements is None:
             self._order_elements = []
@@ -21,7 +21,7 @@ class Order:
 
     def print(self):
         print(20 * "=")
-        print(f"Customer: {self.customer_first_name} {self.customer_last_name}")
+        print(f"Customer: {self._customer_first_name} {self._customer_last_name}")
         print(f"Total price {self._calculate_total_prize()}")
         if self._order_elements:
             for order_element in self._order_elements:
@@ -30,13 +30,28 @@ class Order:
             print("Order is empty!")
         print(20 * "=")
 
-    def generate_order(self, quantity):
-        if quantity > Order.MAX_ORDER_ELEMENTS:
-            quantity = Order.MAX_ORDER_ELEMENTS
-        self._order_elements.clear()
-        for i in range(1, quantity):
-            self._order_elements.append(
-                OrderElement(Product(name=f"Product {i}", category_name=f"Category {i}", unite_price=i), quantity=i))
+    @property
+    def customer_first_name(self):
+        return self._customer_first_name
+
+    @property
+    def customer_last_name(self):
+        return self._customer_last_name
+
+    @property
+    def order_elements(self):
+        return self._order_elements
+
+    @order_elements.setter
+    def order_elements(self, var):
+        if len(var) > Order.MAX_ORDER_ELEMENTS:
+            self._order_elements = var[:Order.MAX_ORDER_ELEMENTS]
+        else:
+            self._order_elements = var
+
+    @property
+    def total_price(self):
+        return self._calculate_total_prize()
 
     def _calculate_total_prize(self):
         sum = 0
@@ -64,7 +79,7 @@ class Order:
 
     def __str__(self):
         order = (20 * "=") + "\n"
-        order += f"Customer: {self.customer_first_name} {self.customer_last_name}\n"
+        order += f"Customer: {self._customer_first_name} {self._customer_last_name}\n"
         order += f"Total price {self._calculate_total_prize()}\n"
         if self._order_elements:
             for order_element in self._order_elements:
@@ -78,9 +93,9 @@ class Order:
         return len(self._order_elements)
 
     def __eq__(self, other):
-        if not self.customer_first_name == other.customer_first_name and self.customer_last_name == other.customer_last_name:
+        if not self._customer_first_name == other.customer_first_name and self._customer_last_name == other.customer_last_name:
             return False
         for order_element in self._order_elements:
-             if not order_element in other._order_elements:
+             if not order_element in other.order_elements:
                  return False
         return True
