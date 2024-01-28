@@ -9,3 +9,6 @@ class DiscountPolicy:
         if total_price > 100:
             total_price -= 20
         return total_price
+
+    def apply_discount(self, amount):
+        return amount
