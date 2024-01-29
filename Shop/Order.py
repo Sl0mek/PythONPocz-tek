@@ -1,6 +1,7 @@
 import random
 from Shop.Product import Product
 from Shop.OrderElement import OrderElement
+from Shop.OrderElementLimitException import OrderElementLimitException
 
 
 class Order:
@@ -65,7 +66,7 @@ class Order:
         if len(self._order_elements) < Order.MAX_ORDER_ELEMENTS:
             self._order_elements.append(OrderElement(product=Product(name=name, category_name=category_name, unite_price=unite_price), quantity=quantity))
         else:
-            raise Exception("To much elements in order")
+            raise OrderElementLimitException(allowed_limit=Order.MAX_ORDER_ELEMENTS)
             # print("To much elements in order")
 
     def _sort_price(self, order_element):
