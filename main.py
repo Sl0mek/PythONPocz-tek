@@ -5,7 +5,6 @@ from Shop.ExpressOrder import ExpressOrder
 from Shop.PercentageDiscount import PercentageDiscount
 from Shop.AbsoluteDiscount import AbsoluteDiscount
 
-
 def joinArgs(*args):
     tmp = ""
     for arg in args:
@@ -64,3 +63,6 @@ if __name__ == '__main__':
     print(joinKwargs(andrzej="słomka", jan="Kowalski"))
 
     unpackingExample()
+
+    print({i: i for i in range(10)})
+

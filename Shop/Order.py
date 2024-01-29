@@ -65,7 +65,8 @@ class Order:
         if len(self._order_elements) < Order.MAX_ORDER_ELEMENTS:
             self._order_elements.append(OrderElement(product=Product(name=name, category_name=category_name, unite_price=unite_price), quantity=quantity))
         else:
-            print("To much elements in order")
+            raise Exception("To much elements in order")
+            # print("To much elements in order")
 
     def _sort_price(self, order_element):
         return order_element.calculate_price()
@@ -84,6 +85,7 @@ class Order:
         if self._order_elements:
             for order_element in self._order_elements:
                 order += str(order_element) + "\n"
+            # order += str({oe.product.identifier: str(oe) for oe in self._order_elements})
         else:
             return "Order is empty!"
         order += (20 * "=") + "\n"
