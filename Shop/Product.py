@@ -1,7 +1,8 @@
 class Product:
 
-    def __init__(self, name, category_name, unite_price):
+    def __init__(self, name, identifier, category_name, unite_price):
         self.name = name
+        self.identifier = identifier
         self.category_name = category_name
         self.unite_price = unite_price
 
