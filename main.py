@@ -4,6 +4,7 @@ from Shop.DataGenerator import DataGenerator
 from Shop.ExpressOrder import ExpressOrder
 from Shop.PercentageDiscount import PercentageDiscount
 from Shop.AbsoluteDiscount import AbsoluteDiscount
+from Shop.OrderElementLimitException import OrderElementLimitException
 
 def joinArgs(*args):
     tmp = ""
@@ -48,7 +49,12 @@ if __name__ == '__main__':
     print(order1)
     order2 = Order(customer_first_name="Andrzej", customer_last_name="Slomka", order_elements=order_elements)
     print(order1 == order2)
-    order2.add_new_order_element(name="Procesor", category_name="Computer", unite_price=1000, quantity=2)
+
+    try:
+        order2.add_new_order_element(name="Procesor", category_name="Computer", unite_price=1000, quantity=2)
+    except OrderElementLimitException as error:
+        print(error)
+
     print(order2)
     express_order = ExpressOrder(customer_first_name="Andrzej", customer_last_name="Slomka", delivery_time="10.10.2024",
                                  order_elements=order_elements,

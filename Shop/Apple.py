@@ -1,9 +1,11 @@
-class Apple:
+from dataclasses import dataclass
 
-    def __init__(self, species_name, size, price_per_kg):
-        self.species_name = species_name
-        self.size = size
-        self.price_per_kg = price_per_kg
+
+@dataclass
+class Apple:
+    species_name: str
+    size: float
+    price_per_kg: float
 
     def calculate_price(self):
         return self.size * self.price_per_kg

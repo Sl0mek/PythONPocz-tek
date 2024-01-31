@@ -1,10 +1,12 @@
-class Product:
+from dataclasses import dataclass
 
-    def __init__(self, name, identifier, category_name, unite_price):
-        self.name = name
-        self.identifier = identifier
-        self.category_name = category_name
-        self.unite_price = unite_price
+
+@dataclass
+class Product:
+    name: str
+    identifier: str
+    category_name: str
+    unite_price: float
 
     def print(self):
         print(f"Name: {self.name}, Category: {self.category_name}, Unit price: {self.unite_price}")
@@ -14,4 +16,3 @@ class Product:
 
     def __eq__(self, other):
         return self.name == other.name and self.category_name == other.category_name and self.unite_price == other.unite_price
-

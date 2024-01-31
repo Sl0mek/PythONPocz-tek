@@ -1,11 +1,11 @@
 from Shop.Product import Product
+from dataclasses import dataclass
 
 
+@dataclass
 class OrderElement:
-
-    def __init__(self, product, quantity):
-        self.product = product
-        self.quantity = quantity
+    product: Product
+    quantity: int
 
     def calculate_price(self):
         return self.product.unite_price * self.quantity
