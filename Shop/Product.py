@@ -1,11 +1,11 @@
 from dataclasses import dataclass
-
+from Shop.ProductCategory import ProductCategory
 
 @dataclass
 class Product:
     name: str
     identifier: str
-    category_name: str
+    category_name: ProductCategory
     unite_price: float
 
     def print(self):
