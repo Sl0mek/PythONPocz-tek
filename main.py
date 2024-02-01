@@ -37,6 +37,26 @@ def unpackingExample():
     print(combined_dict)
 
 
+def notationExample():
+    tmp = input("Enter number:\n>")
+    try:
+        if tmp.isnumeric():
+            output = ""
+            for i, x in enumerate(tmp[::-1]):
+                output += x
+                if i % 3 == 2:
+                    output += "_"
+            output = output.strip("_")
+            print(output[::-1])
+            print(hex(int(tmp)))
+            print(oct(int(tmp)))
+
+        else:
+            raise ValueError(f"Is not a number {tmp}")
+    except ValueError as error:
+        print(error)
+
+
 if __name__ == '__main__':
     order_elements = DataGenerator.generate_base_order()
     order1 = Order(customer_first_name="Andrzej", customer_last_name="Slomka", order_elements=order_elements,
@@ -71,4 +91,6 @@ if __name__ == '__main__':
     unpackingExample()
 
     print({i: i for i in range(10)})
+
+    notationExample()
 
