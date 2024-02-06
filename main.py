@@ -75,6 +75,44 @@ def printNum(num):
             print(dig[int(j)][i] + " ", end="")
         print()
 
+def cesar():
+    text = input("Enter your message: ")
+    shift = int(input("Enter shift: "))
+    cipher = ''
+    for char in text:
+        # if not char.isalpha():
+        #     continue
+        if ord(char) >= 65 and ord(char) <= 90:
+            code = ord(char) + shift
+            if code > ord('Z'):
+                code = (code - 91) + ord('A')
+            cipher += chr(code)
+        elif ord(char) >= 97 and ord(char) <= 122:
+            code = ord(char) + shift
+            if code > ord('z'):
+                code = (code - 123) + ord('a')
+            cipher += chr(code)
+        else:
+            cipher += char
+
+    print(cipher)
+
+def isTextPalindrome(text):
+    text = text.upper()
+    i = 0
+    j = len(text) - 1
+    isPalindrome = True
+    while i <= j:
+        while ord(text[i]) == 32:
+            i += 1
+        while ord(text[j]) == 32:
+            j -= 1
+        if text[i] != text[j]:
+            return False
+        else:
+            i += 1
+            j -= 1
+    return isPalindrome
 
 if __name__ == '__main__':
     printNum(9081726354)
