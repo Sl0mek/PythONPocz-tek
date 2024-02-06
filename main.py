@@ -56,8 +56,28 @@ def notationExample():
     except ValueError as error:
         print(error)
 
+def printNum(num):
+    dig = [
+        ["###", "# #", "# #", "# #", "###"],
+        ["  #", "  #", "  #", "  #", "  #"],
+        ["###", "  #", "###", "#  ", "###"],
+        ["###", "  #", "###", "  #", "###"],
+        ["# #", "# #", "###", "  #", "  #"],
+        ["###", "#  ", "###", "  #", "###"],
+        ["###", "#  ", "###", "# #", "###"],
+        ["###", "  #", "  #", "  #", "  #"],
+        ["###", "# #", "###", "# #", "###"],
+        ["###", "# #", "###", "  #", "###"]
+        ]
+    numStr = str(num)
+    for i in range(5):
+        for j in numStr:
+            print(dig[int(j)][i] + " ", end="")
+        print()
+
 
 if __name__ == '__main__':
+    printNum(9081726354)
     order_elements = DataGenerator.generate_base_order()
     order1 = Order(customer_first_name="Andrzej", customer_last_name="Slomka", order_elements=order_elements,
                    discount_policy=DiscountPolicy())
@@ -88,9 +108,21 @@ if __name__ == '__main__':
     print(joinArgs(1, 2, 3, 4, 5))
     print(joinKwargs(andrzej="słomka", jan="Kowalski"))
 
-    unpackingExample()
+    # unpackingExample()
 
     print({i: i for i in range(10)})
 
     notationExample()
 
+    # from platform import platform
+    #
+    # print(platform())
+    # print(platform(1))
+    # print(platform(0, 1))
+
+    from platform import python_implementation, python_version_tuple
+
+    print(python_implementation())
+
+    for atr in python_version_tuple():
+        print(atr, end=".")
