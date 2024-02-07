@@ -6,6 +6,7 @@ from Shop.PercentageDiscount import PercentageDiscount
 from Shop.AbsoluteDiscount import AbsoluteDiscount
 from Shop.OrderElementLimitException import OrderElementLimitException
 
+
 def joinArgs(*args):
     tmp = ""
     for arg in args:
@@ -56,6 +57,7 @@ def notationExample():
     except ValueError as error:
         print(error)
 
+
 def printNum(num):
     dig = [
         ["###", "# #", "# #", "# #", "###"],
@@ -68,12 +70,13 @@ def printNum(num):
         ["###", "  #", "  #", "  #", "  #"],
         ["###", "# #", "###", "# #", "###"],
         ["###", "# #", "###", "  #", "###"]
-        ]
+    ]
     numStr = str(num)
     for i in range(5):
         for j in numStr:
             print(dig[int(j)][i] + " ", end="")
         print()
+
 
 def cesar():
     text = input("Enter your message: ")
@@ -97,6 +100,7 @@ def cesar():
 
     print(cipher)
 
+
 def isTextPalindrome(text):
     text = text.upper()
     i = 0
@@ -113,6 +117,18 @@ def isTextPalindrome(text):
             i += 1
             j -= 1
     return isPalindrome
+
+
+def estymateTime(date):
+    dateString = str(date)
+    sum = 0
+    for x in dateString:
+        sum += int(x)
+    if sum > 9:
+        return estymateTime(sum)
+    else:
+        return sum
+
 
 if __name__ == '__main__':
     printNum(9081726354)
