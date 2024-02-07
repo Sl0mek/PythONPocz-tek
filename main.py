@@ -130,6 +130,13 @@ def estymateTime(date):
         return sum
 
 
+def isIn(word, base):
+    for x in word:
+        if x not in base:
+            return False
+    return True
+
+
 if __name__ == '__main__':
     printNum(9081726354)
     order_elements = DataGenerator.generate_base_order()
