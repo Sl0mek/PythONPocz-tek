@@ -136,6 +136,35 @@ def isIn(word, base):
             return False
     return True
 
+def validateSudoku(data):
+    for i in range(9):
+        sum = 0
+        for j in range(9):
+            sum += int(str(data[i])[j])
+        if sum != 45:
+            return False
+    for i in range(9):
+        sum = 0
+        for j in range(9):
+            sum += int(str(data[j])[i])
+        if sum != 45:
+            return False
+    for i in range(3):
+        for j in range(3):
+            for k
+    return True
+
+def read_int(prompt, min, max):
+    try:
+        userData = input(prompt)
+        if not userData.isnumeric():
+            raise TypeError("Error: wrong input")
+        if int(userData) < -10 or int(userData) > 10:
+            raise ValueError("Error: the value is not within permitted range (-10..10)")
+        return userData
+    except Exception as error:
+        print(error)
+        return read_int(prompt, min, max)
 
 if __name__ == '__main__':
     printNum(9081726354)
